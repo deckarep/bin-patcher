@@ -1,0 +1,40 @@
+ [
+	{
+		"input-file": "test-file.bin",
+        "output-file": "test-file.out",
+	    "sequence": [
+			{
+			  "desc": "step 1",
+			  "settings": "BACKUP | SILENT | MULTIPLE | Idempotent",
+              "transition": {
+	          	"signature": "dd8308",
+          	   	"patch": "e0e0e0"
+			  }
+            },
+            {
+			  "desc": "step 2",
+			  "settings": "BACKUP | SILENT | MULTIPLE",
+              "transition": {
+	          	"signature": "e0e0e0",
+          	   	"patch": "fefe11"
+			  }
+            },
+            {
+			  "desc": "step 3 - overflow issue",
+			  "settings": "BACKUP | SILENT | MULTIPLE",
+              "transition": {
+	          	"signature": "2343337474733637fefe110d080000dddded",
+          	   	"patch": "ffffffffffffffffffffffffffffffffffff"
+			  }
+            },
+            {
+			  "desc": "step 4 - fatal if match multiple",
+			  "settings": "BACKUP | SILENT | MULTIPLE",
+              "transition": {
+	          	"signature": "ffff",
+          	   	"patch": "eeee"
+			  }
+            }
+	     ]
+	}
+] 
